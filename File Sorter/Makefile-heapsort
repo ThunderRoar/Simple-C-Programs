@@ -1,0 +1,13 @@
+mainprog : checker.o heapsort.o
+	gcc -Wall -O2 -g $^ -o $@
+
+%.o : %.c
+	gcc -Wall -O2 -g -c $<
+
+clean :
+	rm -f *.o mainprog .depend
+.PHONY: .clean
+
+.depend : checker.c heapsort.c
+	gcc -Wall -O2 -MM $^ > .depend
+include .depend
